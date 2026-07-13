@@ -5,6 +5,9 @@ from sqlmodel import Session, SQLModel, create_engine
 
 from app.config import settings
 
+# Registers SQLModel metadata before create_all runs.
+import app.models  # noqa: F401
+
 
 engine = create_engine(
     settings.database_url,
