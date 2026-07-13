@@ -23,3 +23,5 @@ build/
 *.log
 
 Auditoria LPA.txt
+
+repomix-output.xml

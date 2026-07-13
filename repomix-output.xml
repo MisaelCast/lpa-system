@@ -40,6 +40,34 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
+backend/
+  app/
+    api/
+      v1/
+        __init__.py
+    core/
+      __init__.py
+    db/
+      __init__.py
+    models/
+      __init__.py
+    repositories/
+      __init__.py
+    schemas/
+      __init__.py
+    services/
+      __init__.py
+    utils/
+      __init__.py
+    __init__.py
+    config.py
+    main.py
+  tests/
+    .gitkeep
+  .env.example
+  .gitignore
+  README.md
+  requirements.txt
 docs/
   01-domain-model.md
 .gitignore
@@ -49,6 +77,140 @@ README.md
 
 <files>
 This section contains the contents of the repository's files.
+
+<file path="backend/app/api/v1/__init__.py">
+"""API v1 package.
+
+Business endpoints will be registered here in future commits.
+"""
+</file>
+
+<file path="backend/app/core/__init__.py">
+"""Core application utilities and shared infrastructure."""
+</file>
+
+<file path="backend/app/db/__init__.py">
+"""Database configuration package.
+
+PostgreSQL engine and session configuration will be added here in a future commit.
+"""
+</file>
+
+<file path="backend/app/models/__init__.py">
+"""SQLModel models will be defined in this package."""
+</file>
+
+<file path="backend/app/repositories/__init__.py">
+"""Data access repositories will be defined in this package."""
+</file>
+
+<file path="backend/app/schemas/__init__.py">
+"""Request and response schemas will be defined in this package."""
+</file>
+
+<file path="backend/app/services/__init__.py">
+"""Business services will be defined in this package."""
+</file>
+
+<file path="backend/app/utils/__init__.py">
+"""Shared utility functions will be defined in this package."""
+</file>
+
+<file path="backend/app/__init__.py">
+"""LPA System backend application package."""
+</file>
+
+<file path="backend/app/main.py">
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.config import settings
+
+
+app = FastAPI(
+    title=settings.app_name,
+    description=settings.app_description,
+    version=settings.app_version,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.backend_cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def read_root() -> dict[str, str]:
+    return {"message": "LPA System API"}
+</file>
+
+<file path="backend/tests/.gitkeep">
+
+</file>
+
+<file path="backend/.gitignore">
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+</file>
+
+<file path="backend/README.md">
+# LPA System Backend
+
+Backend base del proyecto LPA System construido con FastAPI.
+
+## Crear entorno virtual
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+```
+
+## Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+## Configurar variables de entorno
+
+```bash
+cp .env.example .env
+```
+
+## Ejecutar FastAPI
+
+```bash
+uvicorn app.main:app --reload
+```
+
+La API quedara disponible en `http://127.0.0.1:8000`.
+</file>
+
+<file path="backend/requirements.txt">
+fastapi
+uvicorn[standard]
+sqlmodel
+pydantic-settings
+</file>
 
 <file path="docs/01-domain-model.md">
 # Modelo de Dominio
@@ -346,34 +508,6 @@ Evidencia
 Célula
 </file>
 
-<file path=".gitignore">
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-
-# JavaScript / Node
-node_modules/
-dist/
-build/
-
-# Environment
-.env
-.env.*
-!.env.example
-
-# Editors and OS
-.vscode/
-.idea/
-.DS_Store
-
-# Logs
-*.log
-
-Auditoria LPA.txt
-</file>
-
 <file path="LICENSE">
 MIT License
 
@@ -409,6 +543,36 @@ Estructura inicial del proyecto.
 - `frontend/`: codigo del frontend.
 - `docs/`: documentacion del proyecto.
 - `database/`: scripts, migraciones o recursos de base de datos.
+</file>
+
+<file path=".gitignore">
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# JavaScript / Node
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+
+Auditoria LPA.txt
+
+repomix-output
 </file>
 
 </files>
