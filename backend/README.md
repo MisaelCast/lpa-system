@@ -2,6 +2,22 @@
 
 Backend base del proyecto LPA System construido con FastAPI.
 
+## Instalar PostgreSQL
+
+En Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+
+En macOS con Homebrew:
+
+```bash
+brew install postgresql
+brew services start postgresql
+```
+
 ## Crear entorno virtual
 
 ```bash
@@ -19,6 +35,30 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
+```
+
+Edita `.env` con los valores de tu entorno:
+
+```env
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=lpa_system
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
+```
+
+## Crear base de datos
+
+Con el usuario `postgres`:
+
+```bash
+createdb -U postgres lpa_system
+```
+
+Tambien puedes crearla desde `psql`:
+
+```sql
+CREATE DATABASE lpa_system;
 ```
 
 ## Ejecutar FastAPI
