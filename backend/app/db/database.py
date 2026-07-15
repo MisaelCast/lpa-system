@@ -5,7 +5,7 @@ from sqlmodel import Session, SQLModel, create_engine
 
 from app.config import settings
 
-# Registers SQLModel metadata before create_all runs.
+# Registra los metadatos de SQLModel antes de ejecutar create_all.
 import app.models  # noqa: F401
 
 
@@ -28,7 +28,7 @@ def get_session() -> Generator[Session, None, None]:
 
 
 def create_db_and_tables() -> None:
-    """Create database tables once SQLModel models are registered."""
+    """Crea las tablas una vez registrados los modelos de SQLModel."""
     if not SQLModel.metadata.tables:
         return
 

@@ -18,7 +18,6 @@ class Hallazgo(SQLModel, table=True):
 
     id: int | None = Field(default=None, primary_key=True)
     descripcion: str = Field(max_length=1000)
-    estado: str = Field(default="abierto", max_length=50)
     fecha_creacion: datetime = Field(default_factory=datetime.utcnow)
     respuesta_id: int = Field(foreign_key="respuesta.id", unique=True)
 
