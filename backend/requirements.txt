@@ -4,3 +4,4 @@ sqlmodel
 pydantic-settings
 psycopg[binary]
 passlib[bcrypt]
+PyJWT

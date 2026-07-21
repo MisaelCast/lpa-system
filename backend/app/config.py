@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     database_user: str = "postgres"
     database_password: str = "postgres"
 
+    # Development-only default — override via SECRET_KEY in .env for production.
+    secret_key: str = "development-secret-key-change-me"
+    algorithm: str = "HS256"
+    access_token_expire_minutes: int = 30
+
     backend_cors_origins: list[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
